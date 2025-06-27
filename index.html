@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך למרצה: שילוב מיומנויות פתרון בעיות מורכבות וחשיבה ביקורתית</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            border-color: #2563eb; /* blue-600 */
+            color: #2563eb;
+            background-color: #eff6ff; /* blue-50 */
+        }
+        .rtl-accordion-header::after {
+            content: '▼';
+            float: left;
+            transition: transform 0.3s;
+            font-size: 0.8em;
+            padding-top: 4px;
+        }
+        .rtl-accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        /* Custom styles for accessibility */
+        .text-content {
+            color: #1f2937; /* gray-800 */
+        }
+        .text-subtle {
+            color: #4b5563; /* gray-600 */
+        }
+        .link-style {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        .link-style:hover {
+            color: #1d4ed8;
+        }
+        details summary {
+            cursor: pointer;
+        }
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Header -->
+        <header class="text-center mb-8 bg-white p-6 rounded-lg shadow-md">
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-900">שילוב מיומנויות פתרון בעיות מורכבות וחשיבה ביקורתית בהוראה האקדמית</h1>
+            <p class="mt-2 text-lg text-blue-600 font-semibold">מדריך למרצה: איך לשלב מיומנויות של פתרון בעיות מורכבות וחשיבה ביקורתית בקורסים הדיסציפלינריים?</p>
+            <p class="mt-4 max-w-3xl mx-auto text-content">
+                מדריך זה נועד לספק לכם, המרצים והמרצות, כלים פרקטיים ונגישים לשילוב מיומנויות המאה ה-21 בקורסים הדיסציפלינריים שלכם. המדריך מבוסס בעיקר על תובנות מ"דו"ח שולחן עגול" מטעם מוסד שמואל נאמן, העוסק בפיתוח מיומנויות מקדמות מצוינות ב – STEM במערכת החינוך וההשכלה הגבוהה.
+            </p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="bg-white p-6 rounded-lg shadow-md">
+            <!-- Tabs Navigation -->
+            <div class="border-b border-gray-200 mb-6">
+                <nav class="flex flex-wrap -mb-px" aria-label="Tabs">
+                    <button class="tab-btn active text-lg font-semibold py-4 px-6 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-blue-300 focus:outline-none" onclick="openTab(event, 'tab_what')">
+                        🎯 מה?
+                    </button>
+                    <button class="tab-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-blue-300 focus:outline-none" onclick="openTab(event, 'tab_why')">
+                        💡 למה זה חשוב?
+                    </button>
+                    <button class="tab-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-blue-300 focus:outline-none" onclick="openTab(event, 'tab_how')">
+                        🛠️ איך עושים את זה?
+                    </button>
+                    <button class="tab-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-blue-300 focus:outline-none" onclick="openTab(event, 'tab_assess')">
+                        📊 איך מעריכים?
+                    </button>
+                     <button class="tab-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-blue-300 focus:outline-none" onclick="openTab(event, 'tab_research')">
+                        🔬 תובנות נוספות
+                    </button>
+                    <button class="tab-btn text-lg font-semibold py-4 px-6 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-blue-300 focus:outline-none" onclick="openTab(event, 'tab_enrichment')">
+                        📚 העשרה והרחבה
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="tab_what" class="tab-content active">
+                <h2 class="text-2xl font-bold mb-4">הגדרה: מהן המיומנויות?</h2>
+                <p class="mb-4 text-content">כדי לשלב מיומנויות בצורה יעילה, חשוב שתהיה לנו שפה משותפת. הבנה מדויקת של המיומנויות היא הצעד הראשון לשילוב יעיל שלהן בהוראה. חלק זה מציג את הגדרות הליבה של המיומנויות כפי שנוסחו בדו"ח: פתרון בעיות מורכבות וחשיבה ביקורתית כוללים איתור, עיבוד, ניתוח ופרשנות מידע רלוונטי ומהימן כדי לטפל בסוגיות ובעיות מורכבות, לקבל החלטות מבוססות ולנקוט פעולה יעילה. בהתבסס על הדו"ח, אלו הן הגדרות הליבה הפרקטיות:</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-2">🤔 חשיבה ביקורתית</h3>
+                        <p class="text-content">היכולת להטיל ספק ולהעריך רעיונות ופתרונות. זה כולל:</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-subtle">
+                            <li>זיהוי והערכת הנחות יסוד, טיעונים וראיות.</li>
+                            <li>ניתוח מידע ממקורות שונים והערכת אמינותם והרלוונטיות שלהם.</li>
+                            <li>הכרה בקיומן של פרספקטיבות מרובות.</li>
+                            <li>גיבוש עמדה מנומקת באופן עצמאי.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">🧩 פתרון בעיות מורכבות</h3>
+                        <p class="text-content">היכולת להפעיל תהליכים קוגניטיביים כדי להבין ולפתור מצבים שבהם דרך הפעולה אינה ברורה מאליה. זה כולל:</p>
+                         <ul class="list-disc list-inside mt-2 space-y-1 text-subtle">
+                            <li>זיהוי הבעיה המרכזית ופירוקה למרכיבים.</li>
+                            <li>תכנון וביצוע של פתרון.</li>
+                            <li>איתור, עיבוד וניתוח מידע רלוונטי.</li>
+                            <li>ניטור והערכת ההתקדמות לאורך התהליך.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="mt-6 p-4 bg-yellow-50 border-r-4 border-yellow-400 text-yellow-800 rounded">
+                    <p><strong class="font-semibold">תובנת מפתח מהדו"ח:</strong> שתי המיומנויות הללו אינן "כלליות" בלבד. הן מקבלות ביטוי ייחודי בהתאם להקשר הדיסציפלינרי. לכן, המטרה אינה ללמד "קורס בחשיבה ביקורתית", אלא לשזור את עקרונותיה בתוך ההוראה של כל תחום דעת.</p>
+                </div>
+                
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold mb-2">מרכיבי ליבה בהגדרת המיומנויות</h3>
+                    <p class="mb-4 text-content">אלו הם חמשת מרכיבי הליבה בהגדרת המיומנויות שדורגו כחשובים ביותר על ידי המשתתפים בשולחן העגול. לחיצה על כל מרכיב תחשוף הסבר מפורט.</p>
+                    <div class="space-y-2">
+                        <details class="p-3 bg-gray-50 rounded-lg border">
+                            <summary class="font-semibold cursor-pointer">🔍 איתור, עיבוד, ניתוח ופרשנות מידע רלוונטי ומהימן</summary>
+                            <p class="mt-2 text-subtle">מיומנות זו מתייחסת ליכולת של הפרט לאתר, לעבד, לנתח ולפרש מידע ממקורות שונים באופן מושכל ואמין. היא חיונית להבנה מעמיקה של מצבים מורכבים ובעיות לא מוגדרות, ולאחר מכן לניסוח פתרונות מבוססים ורלוונטיים. זהו שלב קריטי בתהליכי קבלת החלטות ובפתרון בעיות, הדורש יכולות קוגניטיביות גבוהות של סינון וארגון נתונים.</p>
+                        </details>
+                        <details class="p-3 bg-gray-50 rounded-lg border">
+                            <summary class="font-semibold cursor-pointer">❓ שאילת שאלות והערכת רעיונות ופתרונות</summary>
+                            <p class="mt-2 text-subtle">מרכיב זה בליבת החשיבה הביקורתית מתמקד ביכולת להטיל ספק, לבחון ביסודיות רעיונות, טיעונים ופתרונות מוצעים. הוא דורש חשיבה לוגית, יכולת לזהות הנחות יסוד, לבחון ראיות תומכות ולוודא שהפתרונות המוצעים עומדים בקריטריונים של רלוונטיות והתאמה לבעיה. היכולת להעריך מידע ולא לקבלו כפשוטו היא אבן יסוד בחשיבה ביקורתית.</p>
+                        </details>
+                        <details class="p-3 bg-gray-50 rounded-lg border">
+                            <summary class="font-semibold cursor-pointer">💡 הבנה ופתרון מצבים שבהם שיטה או פתרון אינם ברורים באופן מיידי</summary>
+                            <p class="mt-2 text-subtle">זהו ליבת פתרון הבעיות המורכבות – היכולת להתמודד עם אתגרים שבהם אין דרך פעולה מוגדרת או פתרון מוכן מראש. מיומנות זו כרוכה בעיבוד קוגניטיבי עמוק, זיהוי המבנה הנסתר של הבעיה, תכנון תהליכי חקירה, וגמישות מחשבתית לניסוי וטעייה. היא דורשת מהפותר לזהות את הבעיה/ות הספציפית/ות שיש לפתור, לתכנן ולבצע פתרון, ולנטר ולהעריך התקדמות לאורך כל הפעילות.</p>
+                        </details>
+                        <details class="p-3 bg-gray-50 rounded-lg border">
+                            <summary class="font-semibold cursor-pointer">🤔 שלושה סוגי חשיבה: הנמקה, שיפוט ופתרון בעיות</summary>
+                             <p class="mt-2 text-subtle">מרכיב זה מתייחס ליכולת המרכזית בחשיבה רציונלית: היכולת להסיק מסקנות באופן הגיוני (הנמקה), לגבש עמדות מבוססות (שיפוט), ולבנות טיעונים קוהרנטיים שיובילו לפתרון יעיל. הוא מהווה את הבסיס לקבלת החלטות מושכלות ומבוססות ראיות, ומאפשר לנתח מצבים בצורה שיטתית ומבנית.</p>
+                        </details>
+                        <details class="p-3 bg-gray-50 rounded-lg border">
+                            <summary class="font-semibold cursor-pointer">🌐 הבנת ריבוי נקודות מבט</summary>
+                             <p class="mt-2 text-subtle">מרכיב זה מדגיש את המימד הביקורתי של לקיחת פרספקטיבה בחשיבה. הוא כולל הכרה בכך שלכל סוגיה יש פרשנויות והנחות יסוד מרובות, והיכולת לאתגר נקודת מבט נתונה. הבנה זו חיונית לפיתוח חשיבה גמישה, פתיחות לרעיונות חדשים, ויכולת לנתח בעיות מורכבות מנקודות מבט שונות כדי להגיע לפתרונות הוליסטיים יותר.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab_why" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">למה זה חשוב? החיבור בין מיומנויות לתוכן</h2>
+                <p class="mb-4 text-content">כמרצים, אנו מחויבים בראש ובראשונה לתוכן הדיסציפלינרי שלנו ועמוסים במשימות. קל לחשוש שפיתוח המיומנויות הללו יבוא על חשבון העברת הידע. אך התפיסה הזו מוטעית. הדו"ח והמחקרים בתחום מראים שההפך הוא הנכון:</p>
+                <div class="space-y-4">
+                    <div class="p-5 bg-blue-50 rounded-lg border border-blue-200">
+                        <h3 class="font-semibold text-lg text-blue-800">1. זה לא "או-או", זה "גם-וגם": המיומנויות מעמיקות את הבנת התוכן</h3>
+                        <p class="mt-2 text-content">סטודנט שלומד לפתור בעיה מורכבת בתחום שלכם, לא רק רוכש מיומנות כללית, אלא גם מבין את התוכן הדיסציפלינרי בצורה עמוקה ויישומית יותר. הוא לומד לחשוב <strong class="font-semibold">כמו</strong> מומחה בתחום – מהנדס, היסטוריונית, רופא או כלכלנית. השילוב הופך את הידע מרשימת עובדות לכלי עבודה חי ודינמי.</p>
+                    </div>
+                    <div class="p-5 bg-green-50 rounded-lg border border-green-200">
+                        <h3 class="font-semibold text-lg text-green-800">2. הכנה לעולם האמיתי: דרישת שוק העבודה</h3>
+                         <p class="mt-2 text-content">כפי שהדו"ח מדגיש, המעסיקים כיום מחפשים בוגרים ובוגרות שלא רק יודעים את החומר, אלא יכולים לחשוב באופן ביקורתי, לפתור בעיות בלתי צפויות וללמוד באופן עצמאי. שילוב המיומנויות בקורסים אינו תוספת, אלא חלק מהותי מהכשרת הסטודנטים לקריירה מצליחה ומשמעותית.</p>
+                    </div>
+                    <div class="p-5 bg-purple-50 rounded-lg border border-purple-200">
+                         <h3 class="font-semibold text-lg text-purple-800">3. הגברת מוטיבציה ומעורבות הסטודנטים</h3>
+                        <p class="mt-2 text-content">המתודולוגיות לפיתוח מיומנויות (כמו למידה מבוססת בעיות) הן לרוב אקטיביות ורלוונטיות יותר לעולמם של הסטודנטים. כאשר הלמידה עוסקת בפתרון בעיות אמיתיות, היא הופכת למשמעותית יותר, מה שמעלה את המוטיבציה, המעורבות וההנאה מהלמידה.</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-content">שילוב מיומנויות אלו בקורסים אקדמיים אינו רק העשרה, אלא צורך אסטרטגי המציע יתרונות משמעותיים לסטודנטים, למרצים ולמוסד כולו. מיומנויות פתרון בעיות מורכבות וחשיבה ביקורתית הן קריטיות לסטודנטים במאה ה-21. הן מאפשרות התמודדות מושכלת עם אתגרים בעולם משתנה, מעודדות יוזמה, ניתוח, בחינה מחדש של הנחות יסוד, וקבלת החלטות מושכלת. לכן, שילוב מכוון שלהן בהוראה הדיסציפלינרית אינו רק אפשרי, אלא הכרחי.</p>
+            </div>
+
+            <div id="tab_how" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">ארגז כלים יישומי: איך עושים את זה?</h2>
+                 <div class="p-4 mb-6 bg-indigo-50 border-r-4 border-indigo-400 text-indigo-800 rounded">
+                    <h3 class="font-bold">🎯 עקרונות יסוד מהמחקר</h3>
+                    <ul class="list-disc list-inside mt-2 text-content">
+                        <li><strong class="font-semibold">הוראה מפורשת:</strong> מיומנויות חשיבה אינן מתפתחות באופן ספונטני אלא דורשות הוראה מכוונת ושיטתית.</li>
+                        <li><strong class="font-semibold">גישת ההטמעה (Infusion):</strong> יש לשלב את הוראת המיומנויות בהקשר של תוכן דיסציפלינרי ספציפי.</li>
+                         <li><strong class="font-semibold">פיתוח הדרגתי:</strong> יש לבנות את המיומנויות באופן מצטבר ומדורג לאורך הסמסטר.</li>
+                        <li><strong class="font-semibold">אותנטיות:</strong> יש להשתמש בבעיות ותרחישים אמיתיים מהתחום המקצועי.</li>
+                    </ul>
+                </div>
+                <p class="mb-6 text-content">במקום לשנות את כל הקורס מהיסוד, אפשר להתחיל בצעדים קטנים ולצמוח משם. המפתח הוא לבחור את רמת היישום המתאימה לכם, לקורס ולסטודנטים. הנה מודל מדורג המבוסס על מתודולוגיות מהדו"ח.</p>
+
+                <div class="space-y-4" id="accordion-how">
+                    <!-- Level 1: Quick Start -->
+                    <div class="bg-gray-50 rounded-lg border">
+                        <button class="rtl-accordion-header w-full text-right p-4 font-semibold text-lg text-green-700 hover:bg-gray-100 focus:outline-none transition">
+                            🔹 התחלה מהירה: שילוב נקודתי בשיעור
+                        </button>
+                        <div class="accordion-content p-4 border-t">
+                            <p class="mb-4 text-content">שילוב כלים פשוטים ופעילויות קצרות שאינן דורשות שינוי מהותי במבנה הקורס, אך יכולות לעשות הבדל גדול במעורבות ובחשיבה של הסטודנטים.</p>
+                            <div class="space-y-4">
+                               <div class="p-4 bg-white rounded-lg border">
+                                    <h4 class="font-semibold">דיון מונחה ושאלות סוקרטיות</h4>
+                                    <div class="mt-3">
+                                        <p class="mb-2 text-content"><strong>הרעיון המרכזי:</strong> להפוך את השיעור מדיאלוג שבו המרצה הוא מקור הידע, לדיון רב-משתתפים שבו הידע נבנה במשותף, באמצעות שאילת שאלות עומק.</p>
+                                        <p class="mb-2 text-content"><strong>איך ליישם?</strong> הימנעו משאלות עם תשובה אחת נכונה. במקום זאת, השתמשו בשאלות פתוחות:</p>
+                                        <ul class="list-disc list-inside space-y-1 text-subtle">
+                                            <li><strong>שאלות הבהרה:</strong> "למה אתה מתכוון כשאתה אומר...? תוכל לתת דוגמה?"</li>
+                                            <li><strong>שאלות על הנחות יסוד:</strong> "מה אנחנו מניחים כאן? האם ההנחה הזו תמיד נכונה?"</li>
+                                            <li><strong>שאלות על ראיות:</strong> "איך הגעת למסקנה הזו? על אילו נתונים אתה מסתמך?"</li>
+                                        </ul>
+                                         <div class="mt-4 p-3 bg-teal-50 border border-teal-200 rounded-lg">
+                                            <strong class="font-semibold text-teal-800">טיפ למתחילים:</strong> התחילו עם "Think-Pair-Share". שאלו שאלה פתוחה, תנו לסטודנטים דקה לחשוב לבד, שתי דקות לדון עם שכן, ורק אז פתחו את הדיון במליאה.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-white rounded-lg border">
+                                    <h4 class="font-semibold">פעילויות לפיתוח מטא-קוגניציה</h4>
+                                     <div class="mt-3">
+                                        <p class="mb-2 text-content"><strong>הרעיון המרכזי:</strong> לעודד סטודנטים "לחשוב על החשיבה שלהם" – לפתח מודעות לתהליכי הלמידה והחשיבה של עצמם.</p>
+                                        <p class="mb-2 text-content"><strong>איך ליישם?</strong></p>
+                                        <ul class="list-disc list-inside space-y-1 text-subtle">
+                                             <li><strong>"עוטף מבחן" (Exam Wrapper):</strong> לאחר החזרת מבחן, הקדישו 10 דקות לשאלון קצר: "איך התכוננת?", "אילו סוגי שאלות היו לך קשים ומדוע?", "מה תעשה/י אחרת בפעם הבאה?".</li>
+                                             <li><strong>יומן רפלקטיבי:</strong> בקשו מהסטודנטים לכתוב בסוף כל יחידה נקודה אחת שהייתה קשה להבנה, ושאלה אחת שנותרה להם פתוחה.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Level 2: Going Deeper -->
+                    <div class="bg-gray-50 rounded-lg border">
+                        <button class="rtl-accordion-header w-full text-right p-4 font-semibold text-lg text-blue-700 hover:bg-gray-100 focus:outline-none transition">
+                            🔸 העמקה: תכנון יחידת לימוד מבוססת-מיומנויות
+                        </button>
+                        <div class="accordion-content p-4 border-t">
+                             <p class="mb-4 text-content">הקדשת מספר שיעורים או מטלה מרכזית לפעילות מובנית המפתחת מיומנויות באופן ממוקד.</p>
+                              <div class="p-4 bg-white rounded-lg border">
+                                    <h4 class="font-semibold">סימולציות וחקר מקרה (Case Studies)</h4>
+                                     <div class="mt-3">
+                                        <p class="mb-2 text-content"><strong>הרעיון המרכזי:</strong> להכניס את הסטודנטים ל"נעליים" של איש מקצוע המתמודד עם דילמה מורכבת ולקבל החלטות בתנאי אי-ודאות.</p>
+                                        <p class="mb-2 text-content"><strong>איך ליישם?</strong></p>
+                                        <ul class="list-decimal list-inside space-y-1 text-subtle">
+                                            <li><strong>בחירת אירוע רלוונטי:</strong> מצאו אירוע אמיתי או היפותטי המדגים עקרונות מהקורס.</li>
+                                            <li><strong>הצגת הנתונים:</strong> ספקו לסטודנטים את הרקע והנתונים, אך השאירו מקום לעמימות ואי-ודאות.</li>
+                                            <li><strong>הגדרת המשימה:</strong> בקשו מהסטודנטים (בקבוצות) לנתח את המצב, להעריך חלופות ולבחור בדרך פעולה מנומקת.</li>
+                                            <li><strong>דיבייט ורפלקציה:</strong> קיימו דיון על ההחלטות השונות. מה היו השיקולים? מה היו נקודות העיוורון?</li>
+                                        </ul>
+                                        <p class="mt-3 mb-1 font-semibold">דוגמאות:</p>
+                                        <ul class="list-disc list-inside text-subtle">
+                                            <li><strong>ברפואה:</strong> הצגת מקרה קליני מורכב ודיון קבוצתי על דרכי אבחון וטיפול.</li>
+                                            <li><strong>במדע המדינה:</strong> משחק תפקידים המדמה ניהול משבר בינלאומי.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                     <!-- Level 3: Transformation -->
+                    <div class="bg-gray-50 rounded-lg border">
+                        <button class="rtl-accordion-header w-full text-right p-4 font-semibold text-lg text-purple-700 hover:bg-gray-100 focus:outline-none transition">
+                             🔷 טרנספורמציה: עיצוב קורס מבוסס-פרויקטים (PBL)
+                        </button>
+                        <div class="accordion-content p-4 border-t">
+                             <p class="mb-4 text-content">בניית הקורס כולו, או חלק הארי שלו, סביב אתגר מרכזי או פרויקט אותנטי ארוך טווח. כאן, התוכן הדיסציפלינרי נלמד "דרך" ההתמודדות עם הפרויקט.</p>
+                            <div class="p-4 bg-white rounded-lg border">
+                                <h4 class="font-semibold">למידה מבוססת בעיות וחקר (PBL/IBL)</h4>
+                                 <div class="mt-3">
+                                    <p class="mb-2 text-content"><strong>הרעיון המרכזי:</strong> הסטודנטים אינם צרכנים פסיביים של ידע, אלא לומדים תוך כדי התמודדות פעילה עם בעיה אותנטית ומורכבת. המרצה מנחה את תהליך החקר.</p>
+                                    <p class="mb-2 text-content"><strong>איך ליישם?</strong></p>
+                                    <ol class="list-decimal list-inside space-y-1 text-subtle">
+                                        <li><strong>הצגת הבעיה:</strong> פתחו את הקורס עם בעיה אמיתית ומורכבת (למשל, "כיצד נתכנן עיר מקיימת?").</li>
+                                        <li><strong>הגדרת צורכי למידה:</strong> הנחו את הסטודנטים לזהות מה הם צריכים ללמוד כדי להתמודד עם הבעיה.</li>
+                                        <li><strong>שלב החקר:</strong> הסטודנטים אוספים מידע, מנתחים ומפתחים פתרונות, בעוד המרצה מנחה ומכוון.</li>
+                                        <li><strong>סינתזה והצגה:</strong> הסטודנטים מציגים את הפתרונות שלהם ומנמקים אותם.</li>
+                                    </ol>
+                                    <p class="mt-3 mb-1 font-semibold">דוגמאות:</p>
+                                    <ul class="list-disc list-inside text-subtle">
+                                        <li><strong>בהנדסה:</strong> פרויקט סמסטריאלי לתכנון פתרון הנדסי לבעיה קהילתית.</li>
+                                        <li><strong>במנהל עסקים:</strong> פיתוח תוכנית הבראה לחברה אמיתית במשבר.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gemini Activity Generator -->
+                <div class="mt-8 border-t-2 pt-6 border-dashed">
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">⭐ מחולל רעיונות לפעילות</h3>
+                        <p class="text-center text-content mb-4">הזינו פרטים על הקורס שלכם, וקבלו רעיון מותאם אישית לפעילות שתשלב פיתוח מיומנויות קריטיות.</p>
+                        <div class="max-w-2xl mx-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="courseTopic" class="block mb-2 font-semibold text-content">נושא הקורס:</label>
+                                    <input type="text" id="courseTopic" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="לדוגמה: כימיה אורגנית, תכנון ערים">
+                                </div>
+                                <div>
+                                    <label for="skillToDevelop" class="block mb-2 font-semibold text-content">מיומנות להתמקד בה:</label>
+                                    <select id="skillToDevelop" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="חשיבה ביקורתית">חשיבה ביקורתית</option>
+                                        <option value="פתרון בעיות מורכבות">פתרון בעיות מורכבות</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="mb-4">
+                                <label for="preferredMethodology" class="block mb-2 font-semibold text-content">מתודולוגיה מועדפת:</label>
+                                <select id="preferredMethodology" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="ניתוח חקר מקרה (Case Study)">ניתוח חקר מקרה (Case Study)</option>
+                                    <option value="למידה מבוססת בעיות/פרויקטים (PBL)">למידה מבוססת בעיות/פרויקטים (PBL)</option>
+                                    <option value="דיון מונחה עם שאלות סוקרטיות">דיון מונחה עם שאלות סוקרטיות</option>
+                                     <option value="פעילות מטא-קוגניטיבית">פעילות מטא-קוגניטיבית</option>
+                                </select>
+                            </div>
+                            <button id="generateBtn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition flex items-center justify-center">
+                                ⭐ יצירת רעיון לפעילות
+                            </button>
+                            <div id="loader" class="loader" style="display: none;"></div>
+                            <div id="activityResult" class="mt-6 p-4 bg-white rounded-md border" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mt-8 p-4 bg-yellow-50 border-r-4 border-yellow-400 text-yellow-800 rounded">
+                    <h4 class="font-bold">🚀 הצעדים הבאים שלכם</h4>
+                    <p class="mt-2 text-content">רוצים להתחיל? הנה מסלול אפשרי:</p>
+                    <ol class="list-decimal list-inside mt-2">
+                        <li><strong>בחנו את הקורס הנוכחי שלכם:</strong> זהו 2-3 נושאים שבהם שילוב פעילות לפיתוח מיומנויות יכול להעמיק את הלמידה.</li>
+                        <li><strong>פתחו פעילות ראשונה:</strong> בחרו מתודולוגיה אחת (למשל, שאלות סוקרטיות או ניתוח מקרה קצר) ופתחו פעילות ממוקדת.</li>
+                        <li><strong>התנסו וקבלו משוב:</strong> נסו את הפעילות בשיעור. בסופה, שאלו את הסטודנטים איך הייתה החוויה ומה הם למדו ממנה.</li>
+                        <li><strong>השתתפו בקהילת עמיתים:</strong> שתפו הצלחות ואתגרים עם מרצים אחרים. למידה משותפת היא המפתח.</li>
+                        <li><strong>המשיכו לפתח ולשפר:</strong> התחילו בקטן, למדו מהניסיון, והרחיבו את היישום בהדרגה.</li>
+                    </ol>
+                </div>
+                <div class="mt-4 p-4 text-center bg-gray-100 rounded-lg">
+                    <h4 class="font-bold text-lg">עזרה נוספת?</h4>
+                    <p class="mt-2 text-content">אנו כאן לתמוך בכם בתהליך השילוב. צרו קשר לקבלת ייעוץ אישי.</p>
+                    <a href="mailto:miri.mahabad@gmail.com" class="mt-3 inline-block bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition">צרו קשר במייל</a>
+                     <p class="mt-2 text-sm text-subtle">או שלחו מייל ישירות לכתובת: miri.mahabad@gmail.com</p>
+                </div>
+
+            </div>
+
+            <div id="tab_assess" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">הערכה למטרות למידה: איך עושים את זה נכון?</h2>
+                <p class="mb-2 text-content">הדו"ח מדגיש שהערכת מיומנויות חשיבה היא אתגר. המטרה אינה רק לתת ציון, אלא <strong class="font-semibold">לקדם למידה</strong>. לכן, ההערכה צריכה להיות <strong class="font-semibold">תהליכית, מגוונת ומבוססת-הקשר</strong>.</p>
+                 <p class="mb-4 text-content">במקום לחפש "כלי אחד" שיעשה הכל, הגישה המומלצת היא <strong class="font-semibold">לאסוף עדויות ללמידה ממספר מקורות</strong>:</p>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-orange-50 p-6 rounded-lg border border-orange-200 text-center">
+                        <h3 class="text-xl font-semibold text-orange-800 mb-2">1. ניתוח תוצרים</h3>
+                        <p class="text-subtle">בחינה של עבודות, מטלות כתיבה, פתרון בעיות, מפות מושגים ושאלות פתוחות במבחנים. כאן אנו רואים את <strong class="text-orange-700">התוצאה</strong> של החשיבה.</p>
+                    </div>
+                    <div class="bg-cyan-50 p-6 rounded-lg border border-cyan-200 text-center">
+                        <h3 class="text-xl font-semibold text-cyan-800 mb-2">2. תצפית על תהליכים</h3>
+                         <p class="text-subtle">צפייה בסטודנטים/ות בזמן אמת במהלך דיונים, סימולציות ועבודת צוות. כאן אנו רואים את <strong class="text-cyan-700">החשיבה בפעולה</strong>.</p>
+                    </div>
+                     <div class="bg-lime-50 p-6 rounded-lg border border-lime-200 text-center">
+                        <h3 class="text-xl font-semibold text-lime-800 mb-2">3. רפלקציה של הסטודנט/ית</h3>
+                        <p class="text-subtle">שימוש בשאלוני משוב עצמי, יומנים רפלקטיביים ודיאלוג שבו הסטודנט/ית מסביר/ה את תהליך החשיבה שלו/ה. כאן אנו מקבלים הצצה ל<strong class="text-lime-700">מודעות לתהליך החשיבה (מטא-קוגניציה)</strong>.</p>
+                    </div>
+                </div>
+                
+                 <div class="mt-8 mb-6" id="accordion-assess">
+                    <h3 class="text-xl font-semibold mb-3">דוגמאות לסוגי מטלות הערכה (מתוך הדו"ח)</h3>
+                    <div class="space-y-4">
+                         <!-- Accordion Item Assess 1 -->
+                        <div class="bg-gray-50 rounded-lg border">
+                            <button class="rtl-accordion-header w-full text-right p-4 font-semibold text-lg hover:bg-gray-100 focus:outline-none transition">
+                                מודלים של מטלות הערכה
+                            </button>
+                            <div class="accordion-content p-4 border-t">
+                                <ul class="list-disc list-inside space-y-3 text-content">
+                                    <li><strong class="font-semibold">מטלות כתיבה:</strong> דרך יעילה להערכת מיומנויות ניתוח, יצירה והערכה. דורשות מהסטודנט/ית לארגן את מחשבותיו ולהציג טיעון מנומק.</li>
+                                    <li><strong class="font-semibold">מטלות סימולציה:</strong> מצוינות להערכת ניתוח מערכות. מספקות מגוון רחב של פעילויות ותגובות, ומאפשרות איסוף נתוני ביצוע בזמן אמת על תהליך פתרון הבעיה.</li>
+                                    <li><strong class="font-semibold">מפות מושגים:</strong> כלי ויזואלי יעיל להערכת היכולת לנתח מערכות וליצור קשרים. מאפשרות לסטודנטים/ות להמחיש יחסים מורכבים בין מושגים.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Accordion Item Assess 2 -->
+                        <div class="bg-gray-50 rounded-lg border">
+                            <button class="rtl-accordion-header w-full text-right p-4 font-semibold text-lg hover:bg-gray-100 focus:outline-none transition">
+                                שאלות פתוחות ומבחנים חלופיים
+                            </button>
+                            <div class="accordion-content p-4 border-t">
+                                <ul class="list-disc list-inside space-y-3 text-content">
+                                    <li><strong class="font-semibold">שאלות פתוחות במבחנים:</strong> מאפשרות להעריך לא רק את התוכן, אלא גם את דרך החשיבה שהובילה לתשובה. למשל, לבקש להציג את כל שלבי הפתרון לבעיה או להצדיק בחירה בין חלופות.</li>
+                                    <li><strong class="font-semibold">מודל יחידה (כמו במבחני PISA):</strong> מטלות פתוחות ללא תשובה נכונה אחת, הבוחנות את יכולת הסטודנטים/ות לייצר רעיונות מגוונים ומקוריים, להעריך ולשפר רעיונות בהקשרים שונים.</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <!-- Accordion Item Assess 3 -->
+                        <div class="bg-gray-50 rounded-lg border">
+                            <button class="rtl-accordion-header w-full text-right p-4 font-semibold text-lg hover:bg-gray-100 focus:outline-none transition">
+                                כלים ומודלים פורמליים
+                            </button>
+                            <div class="accordion-content p-4 border-t">
+                               <ul class="list-disc list-inside space-y-3 text-content">
+                                    <li><strong class="font-semibold">כלים למדידה כללית (Domain-General Measures):</strong> מבחנים סטנדרטיים (כמו CCTST, HCTA) המודדים מיומנויות חשיבה ביקורתית כלליות. יכולים לשמש ככלי להערכה ראשונית או מסכמת.</li>
+                                    <li><strong class="font-semibold">מודלים של ראיות (Evidence Models):</strong> מסגרות הערכה המתארות אילו התנהגויות ספציפיות יש למדוד וכיצד הן קשורות למיומנויות. מודלים אלה עוזרים לספק משוב ממוקד הן ברמת המיומנות והן ברמת המטלה.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                     <h3 class="text-xl font-semibold mb-3"> מחוונים (Rubrics) כגשר בין הוראה להערכה</h3>
+                    <p class="mb-4 text-content">
+                         מחוון אינו רק "טופס בדיקה", אלא כלי פדגוגי שמתרגם את המושג המופשט "חשיבה ביקורתית" לקריטריונים ברורים ורמות ביצוע. הוא יוצר שפה משותפת בין המרצה לסטודנטים/ות ומבהיר מהי הצלחה.
+                    </p>
+                    <div class="overflow-x-auto bg-gray-50 p-4 rounded-lg border">
+                        <h4 class="font-semibold mb-2">דוגמה למחוון להערכת ניתוח ביקורתי של מאמר (בהשראת מודל OECD מהדו"ח)</h4>
+                        <table class="w-full text-right border-collapse">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="p-3 font-semibold text-sm border">מימד</th>
+                                    <th class="p-3 font-semibold text-sm border">רמת ביצוע</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td class="p-3 text-sm font-semibold border align-top">
+                                        <strong class="text-blue-700">חקירה (Inquiring)</strong>
+                                        <p class="font-normal text-subtle mt-1">זיהוי והטלת ספק בהנחות יסוד.</p>
+                                    </td>
+                                    <td class="p-3 text-sm text-subtle border">הסטודנט מזהה טיעונים מרכזיים, אך מקבל את הנחות היסוד כנתונות. <br>← <strong class="text-green-600">רמה מתקדמת:</strong> הסטודנט מזהה את הנחות היסוד הסמויות של הכותב/ת ומעריך את תקפותן.</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                     <td class="p-3 text-sm font-semibold border align-top">
+                                        <strong class="text-blue-700">דמיון (Imagining)</strong>
+                                        <p class="font-normal text-subtle mt-1">בחינת פרספקטיבות חלופיות.</p>
+                                    </td>
+                                    <td class="p-3 text-sm text-subtle border">הסטודנט מסכם את הטיעון מנקודת מבט אחת. <br>← <strong class="text-green-600">רמה מתקדמת:</strong> הסטודנט משווה בין פרספקטיבות שונות ומנתח כיצד כל אחת מהן משפיעה על המסקנות.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div class="mt-6 p-4 bg-blue-50 border-r-4 border-blue-400 text-blue-800 rounded">
+                        <p><strong class="font-semibold">טיפ פרקטי מהדו"ח:</strong> הערכה צריכה להיות חלק מדיאלוג. השתמשו במחוון כבסיס למשוב. במקום רק להקיף ציון, כתבו הערה קצרה: "זיהית יפה את הטיעון המרכזי. בפעם הבאה, נסה/י לאתגר את הנחת היסוד שעליה הוא נשען".</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div id="tab_research" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">תובנות ממקורות נוספים: עקרונות מ"איך אנשים לומדים"</h2>
+                 <p class="mb-4 text-content">כדי לחזק את המסגרת הפרקטית, אנו משלבים כאן עקרונות מרכזיים מהספר המשפיע <strong class="font-semibold">"How People Learn II"</strong>. ספר זה לא מציע מודל בודד, אלא מספק תובנות יסוד על תהליכי למידה, שמחזקות את ה"למה" וה"איך" של פיתוח מיומנויות.</p>
+                <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                     <h3 class="text-xl font-semibold text-indigo-800 mb-2">3 עקרונות יסוד ללמידה משמעותית</h3>
+                     <ol class="list-decimal list-inside space-y-4 text-content">
+                        <li>
+                            <strong class="font-semibold">מומחיות היא לא רק צבירת עובדות, אלא ארגון ידע:</strong>
+                            <p class="mt-1 text-subtle">מומחים בתחום כלשהו אינם רק יודעים יותר; הידע שלהם מאורגן סביב "רעיונות גדולים" או עקרונות מרכזיים. מבנה זה מאפשר להם להבין את ההקשר, לראות דפוסים, וליישם את הידע באופן גמיש לפתרון בעיות חדשות.
+                            <br><strong class="font-semibold text-indigo-700"> כשאנו מלמדים באמצעות בעיות אותנטיות (PBL), אנו מעודדים סטודנטים לארגן את הידע החדש סביב בעיה קונקרטית, ובכך בונים אצלם מבני ידע של מומחים, ולא רק רשימת מושגים.</strong></p>
+                        </li>
+                        <li>
+                            <strong class="font-semibold">הקשר הוא המלך: חשיבותה של למידה מבוססת-הקשר (Situated Cognition):</strong>
+                             <p class="mt-1 text-subtle">ידע הנלמד באופן מבודד ומופשט קשה יותר להבנה, לזכירה, ובעיקר – קשה להעברה (transfer) למצבים חדשים. למידה היא האפקטיבית ביותר כאשר היא מתרחשת בהקשר אותנטי, המדמה את האופן שבו הידע משמש בעולם האמיתי.
+                            <br><strong class="font-semibold text-indigo-700"> מתודולוגיות כמו חקר מקרה (Case Studies) וסימולציות הן יישום ישיר של עיקרון זה. הן מציבות את הסטודנטים בתוך הקשר ריאליסטי ומחייבות אותם להפעיל חשיבה ביקורתית ופתרון בעיות כפי שיצטרכו לעשות במקצועם העתידי.</strong> </p>
+                        </li>
+                        <li>
+                            <strong class="font-semibold">מטא-קוגניציה היא המפתח להעברה:</strong>
+                            <p class="mt-1 text-subtle">היכולת להעביר למידה מהקשר אחד לאחר תלויה במודעותו של הלומד לתהליכי החשיבה של עצמו (מטא-קוגניציה). סטודנטים שמסוגלים לחשוב על <em class="font-semibold">איך</em> הם לומדים ופותרים בעיות, יכולים להתאים את האסטרטגיות שלהם למצבים חדשים ובלתי מוכרים.
+                             <br><strong class="font-semibold text-indigo-700"> הפעילויות לפיתוח מטא-קוגניציה (כמו "עוטף מבחן" או יומן רפלקטיבי) הן קריטיות. הן הופכות את תהליך הלמידה לשקוף ומאפשרות לסטודנטים לזקק עקרונות פעולה כלליים מתוך ההתנסות הספציפית.</strong></p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div id="tab_enrichment" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">העשרה והרחבה</h2>
+                <p class="mb-4 text-content">כדי להמשיך ולהעמיק בנושא, ריכזנו עבורכם מספר המלצות:</p>
+                <div class="space-y-4">
+                     <div class="p-5 bg-gray-100 rounded-lg">
+                        <h3 class="font-semibold text-lg">🎧 לימוד עצמי: פודקאסטים, סרטונים ומאמרים</h3>
+                        <p class="mt-2 text-content">הקדישו זמן לחומרי העשרה קצרים ואיכותיים. </p>
+                        <a href="https://drive.google.com/file/d/1VJcqm42KInIceNM5jFbB_m6ocuG3IK4a/view?usp=sharing" target="_blank" class="mt-2 inline-block font-semibold link-style">חשיבה ביקורתית ופתרון בעיות מורכבות: האתגר והשינוי בהשכלה הגבוהה</a>
+                    </div>
+                     <div class="p-5 bg-gray-100 rounded-lg">
+                        <h3 class="font-semibold text-lg">🤝 פיתוח מקצועי למרצים ומרצות</h3>
+                        <p class="mt-2 text-content">אתם מוזמנים ליצור קשר עם הדקאנט או היחידה לקידום ההוראה כדי להשתתף בסדנאות ממוקדות בנושאי הוראת מיומנויות, להצטרף לקהילות למידה אקדמיות, ולקחת חלק בדיונים לשיפור מתמיד של אסטרטגיות ההוראה שלכם/ן.</p>
+                    </div>
+                    <div class="p-5 bg-gray-100 rounded-lg">
+                        <h3 class="font-semibold text-lg">📄 עיון נוסף: מקורות המדריך</h3>
+                        <ul class="list-disc list-inside mt-2 space-y-2 text-content">
+                            <li>
+                                מדריך זה מבוסס על הדו"ח "International Round Table Phase I for Advancing Skills in STEM Education" של מוסד שמואל נאמן (ינואר 2025).
+                                <br>
+                                <a href="https://www.neaman.org.il/international-round-table-phase-i-for-advancing-skills-in-stem-education/" target="_blank" class="mt-1 inline-block font-semibold link-style">קישור לדו"ח המלא</a>
+                                <br>
+                                <a href="https://mirimk3.github.io/Advancing-STEM-Excellence-Skills/" target="_blank" class="mt-1 inline-block font-semibold link-style">תמצית הדו"ח</a>
+                            </li>
+                             <li>
+                                <strong>הספר "איך אנשים לומדים":</strong>
+                                <br>
+                                <a href="https://www.nap.edu/catalog/24783/how-people-learn-ii-learners-contexts-and-cultures" target="_blank" class="mt-1 inline-block font-semibold link-style">קישור לספר How People Learn II</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+        function openTab(event, tabId) {
+            // Hide all tab content
+            let tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+                tabContents[i].classList.remove("active");
+            }
+
+            // Deactivate all tab buttons
+            let tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the current tab and activate its button
+            document.getElementById(tabId).style.display = "block";
+            document.getElementById(tabId).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+        
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const header = element;
+            header.classList.toggle('active');
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        }
+
+        // Gemini API Call Function
+        async function generateActivity() {
+            const courseTopic = document.getElementById('courseTopic').value;
+            const skillToDevelop = document.getElementById('skillToDevelop').value;
+            const preferredMethodology = document.getElementById('preferredMethodology').value;
+            const resultDiv = document.getElementById('activityResult');
+            const loader = document.getElementById('loader');
+            const generateBtn = document.getElementById('generateBtn');
+
+            if (!courseTopic) {
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = '<p class="text-red-500 text-center">אנא הזינו את נושא הקורס.</p>';
+                return;
+            }
+
+            loader.style.display = 'block';
+            resultDiv.style.display = 'none';
+            generateBtn.disabled = true;
+
+            const prompt = `You are an expert in academic pedagogy for STEM fields. Your task is to generate one practical in-class activity idea for a university course on the topic of '${courseTopic}'. The activity must be designed to specifically develop the skill of '${skillToDevelop}' using the '${preferredMethodology}' methodology. Please provide the response in Hebrew. The response should be concise and practical for a lecturer to implement. Include: 1. A clear title for the activity (כותרת). 2. A short description of the activity (תיאור הפעילות). 3. One or two follow-up discussion questions (שאלות לדיון). Format the response clearly with titles for each section.`;
+            
+            const chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = { contents: chatHistory };
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`שגיאת רשת: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    resultDiv.innerHTML = `<pre class="whitespace-pre-wrap text-content p-4 bg-gray-50 rounded">${text}</pre>`;
+                } else {
+                    resultDiv.innerHTML = '<p class="text-red-500 text-center">לא התקבלו תוצאות מהשרת. נסו שוב.</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `<p class="text-red-500 text-center">אירעה שגיאה. אנא בדקו את חיבור האינטרנט ונסו שוב. <br><small>${error.message}</small></p>`;
+            } finally {
+                loader.style.display = 'none';
+                resultDiv.style.display = 'block';
+                generateBtn.disabled = false;
+            }
+        }
+        
+        // Ensure the first tab is open on load and set up event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup tabs
+             const activeTabButton = document.querySelector('.tab-btn.active');
+             if(activeTabButton) {
+                openTab({currentTarget: activeTabButton}, activeTabButton.getAttribute('onclick').match(/'([^']+)'/)[1]);
+             }
+
+             // Setup accordions
+             document.querySelectorAll('.rtl-accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    toggleAccordion(this);
+                });
+             });
+
+             document.querySelectorAll('details > summary').forEach(summary => {
+                summary.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const details = e.target.parentElement;
+                    details.open = !details.open;
+                });
+             });
+            
+             // Setup Gemini button
+             const generateBtn = document.getElementById('generateBtn');
+             if(generateBtn) {
+                generateBtn.addEventListener('click', generateActivity);
+             }
+        });
+    </script>
+
+</body>
+</html>
